@@ -1,0 +1,74 @@
+import { Inject, Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Party } from './interface/party.interface';
+import { PARTY_MODEL, YOUTUBE_IMAGE, YOUTUBE_IMAGE_URL } from '../constants';
+
+import { CreatePartyDto } from './dto/createPartyDto.dto';
+import { EditPartyDto } from './dto/editPartyDto.dto';
+import { UserDto } from '../user/dto/user.dto';
+import { UserRolesEnum } from '../user/enum/userRoles.enum';
+
+@Injectable()
+export class PartyService {
+
+  constructor(@Inject(PARTY_MODEL) private partyModel: Model<Party>) {}
+
+  sortPartyTracks(party: Party): Party {
+    party.tracks = party.tracks.sort((trackA, trackB) => trackB.votesCount - trackA.votesCount);
+    return party;
+  }
+
+  async findOneById(partyId: string): Promise<Party> {
+      return this.partyModel.findById(partyId);
+  }
+
+  async create(createPartyDto: CreatePartyDto, user: UserDto): Promise<Party> {
+    const limited = !(user.role == UserRolesEnum.ADMIN || user.role == UserRolesEnum.PREMIUM);
+    const createParty = {ownerId: user.id, limited: limited,...createPartyDto};
+    const createdParty = new this.partyModel(createParty);
+    return createdParty.save();
+  }
+
+  async join(party: Party, memberId: number): Promise<Party> {
+    party.members.push(memberId);
+    return await party.save();
+  }
+
+  async leave(party: Party, memberId: number): Promise<Party> {
+    party.members.splice(party.members.indexOf(memberId),1);
+    return await party.save();
+  }
+
+  async delete(party: Party) {
+    return this.partyModel.deleteOne({ _id: party._id });
+  }
+
+  async edit(party: Party, editPartyDto: EditPartyDto): Promise<Party> {
+    return this.partyModel.findOneAndUpdate({ _id: party._id }, { name: editPartyDto.name }, { new: true });
+  }
+
+  async addTrack(party: Party, trackId: string): Promise<Party> {
+    const imageUrl = YOUTUBE_IMAGE_URL + trackId + YOUTUBE_IMAGE;
+    const trackToAdd= {imageUrl: imageUrl, votes: [],votesCount: 0, id: trackId};
+    party.tracks.push(trackToAdd);
+    const updatedParty = await party.save();
+    return this.sortPartyTracks(updatedParty);
+  }
+
+  async voteTrack(party: Party, trackId: string, userDto: UserDto): Promise<Party> {
+    const updatedParty = await this.partyModel.findOneAndUpdate(
+      {"_id": party._id, "tracks.id": trackId},
+      {
+        $push: {"tracks.$.votes": userDto.id},
+        $inc: {"tracks.$.votesCount": 1}
+      }, { new: true });
+    return this.sortPartyTracks(updatedParty);
+  }
+
+  async nextTrack(party: Party): Promise<Party> {
+    const nextTrack = party.tracks.shift();
+    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl }
+    const updatedParty = await party.save()
+    return this.sortPartyTracks(updatedParty);
+  }
+}

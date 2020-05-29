@@ -1,0 +1,77 @@
+## USERS
+# user eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+# premium eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Mn0.4HJKocDenmbpNbQ_nooP9iRKZkTfpNrVSB-LoQA7Yig
+# admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6M30.xMEDQY_YgSMgA_vghbYYx4koZDbkS2yCaIXY7FJoHUI
+
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6MX0.Oi8p_Os9JOkZW1Ljfz3ADrDNCXzmU5NRLreWm8ggzfo
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwicm9sZSI6MX0.Z3k5sAJX3YCbqhyeIDUgTBmFQx07xbY2NTXmdcvJznc
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Niwicm9sZSI6MX0.ipwUQFrdkEdpyBDn_-t1fueInfBLrXzfSTLoy08FX_0
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Nywicm9sZSI6MX0.ycToexPJN_u9H2FDcSps2pLdOxYsyKOSqlY4_ERnR60
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6MX0.btbB01flYmRBBhm26FBLhsr4wlCA_4J2SQ-Gzxv7XXs
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwicm9sZSI6MX0.Eo0lnUL4wow3ETgvdEhwnANRRWBfbDc8rxhlplq2ay4
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOjF9.VafyNc_7m0OEXPMvjXNMtJeJVHNJbRB-iFPMOmitePM
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOjF9.CmFiQ8_K_u6gJ0jj9zjmuLdxSanJljVdZbZ65jWMmiM
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvbGUiOjF9.xOjajmhIUqA9DruSVDwpHqQN9r7B2fTiEkFqYUkL4FQ
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOjF9.Ob3cd3dVuwS3RCKtXTsOB4PuGMjcwZ7pSVL7rUS5qT4
+#u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+
+# party birthday 5ece92ff77115907744975b1 (premium owner) 5ece94e946b13e078c2b9b4b
+
+### Create
+POST http://localhost/party
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+
+{
+  "name": "Birthday"
+}
+
+### GET
+GET http://localhost/party/5ece94e946b13e078c2b9b4b
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+
+### Delete
+DELETE http://localhost/party/5ece900e0418ec07364ca055
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Mn0.4HJKocDenmbpNbQ_nooP9iRKZkTfpNrVSB-LoQA7Yig
+
+
+### Edit
+PUT http://localhost/party/5ece94e946b13e078c2b9b4b
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+
+{
+  "name": "test2",
+  "limited": true
+}
+
+### Join
+PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/join
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+
+
+### leave
+PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/leave
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+
+
+
+### add track
+PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/add-track/1234567897
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+
+
+### Vote
+PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/vote-track/123456
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6M30.xMEDQY_YgSMgA_vghbYYx4koZDbkS2yCaIXY7FJoHUI
+
+### Next-track
+PUT http://localhost/party/5ece94e946b13e078c2b9b4b/next-track
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
