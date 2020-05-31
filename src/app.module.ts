@@ -15,8 +15,8 @@ const Eureka = require('eureka-js-client').Eureka;
     JwtModule.register({ secret: configuration.jwtSecret }),
     EurekaModule.forRoot({
       eureka: new Eureka({instance: configuration.eurekaClient.instance, eureka: configuration.eurekaClient.eureka }),
-      disableDiscovery: true,
-      disable: true,
+      disableDiscovery: Boolean(configuration.eurekaClient.enable),
+      disable: Boolean(configuration.eurekaClient.enable),
     }),
     PartyModule,
     RabbitMqModule,

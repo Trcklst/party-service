@@ -18,8 +18,8 @@ Service permettant la gestion de la 'party':
 - Put /party/:id : modification d'une party (body: {name}) : 200 obj party
 - Patch /party/:id/join : joindre une party : 200 obj party
 - Patch /party/:id/leave : quitter une party : 200 obj party
-- Patch /party/:id/add-track : ajout d'un track (body: {trackId}) : 200 obj party
-- Patch /party/:id/vote-track : vote pour un track (body: {trackId}) : 200 obj party
+- Post /party/:id/add-track : ajout d'un track (body: {name, id}) : 200 obj party
+- Patch /party/:id/vote-track/trackId : vote pour un track : 200 obj party
 - Put /party/:id/next-track : gestion du track joué : 200 obj party
 
 ## Events sent

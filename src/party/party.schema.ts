@@ -12,6 +12,7 @@ export const PartySchema = new mongoose.Schema({
   tracks: [
     {
       id: String,
+      name: String,
       imageUrl: String,
       votesCount: Number,
       votes: Array

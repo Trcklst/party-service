@@ -7,6 +7,7 @@ import { CreatePartyDto } from './dto/createPartyDto.dto';
 import { EditPartyDto } from './dto/editPartyDto.dto';
 import { UserDto } from '../user/dto/user.dto';
 import { UserRolesEnum } from '../user/enum/userRoles.enum';
+import { AddTrackDto } from './dto/addTrackDto.dto';
 
 @Injectable()
 export class PartyService {
@@ -47,9 +48,9 @@ export class PartyService {
     return this.partyModel.findOneAndUpdate({ _id: party._id }, { name: editPartyDto.name }, { new: true });
   }
 
-  async addTrack(party: Party, trackId: string): Promise<Party> {
-    const imageUrl = YOUTUBE_IMAGE_URL + trackId + YOUTUBE_IMAGE;
-    const trackToAdd= {imageUrl: imageUrl, votes: [],votesCount: 0, id: trackId};
+  async addTrack(party: Party, addTrackDto: AddTrackDto): Promise<Party> {
+    const imageUrl = YOUTUBE_IMAGE_URL + addTrackDto.id + YOUTUBE_IMAGE;
+    const trackToAdd= {imageUrl: imageUrl, name: addTrackDto.name, votes: [],votesCount: 0, id: addTrackDto.id};
     party.tracks.push(trackToAdd);
     const updatedParty = await party.save();
     return this.sortPartyTracks(updatedParty);
@@ -67,7 +68,7 @@ export class PartyService {
 
   async nextTrack(party: Party): Promise<Party> {
     const nextTrack = party.tracks.shift();
-    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl }
+    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl, name: nextTrack.name }
     const updatedParty = await party.save()
     return this.sortPartyTracks(updatedParty);
   }

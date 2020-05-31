@@ -12,6 +12,7 @@ export default {
     dbname: process.env.DB_NAME
   },
   eurekaClient: {
+    enable: process.env.EUREKA_ENABLE_DISCOVERY,
     instance: {
       app: process.env.EUREKA_INSTANCE_NAME,
       hostName: process.env.EUREKA_INSTANCE_HOST,

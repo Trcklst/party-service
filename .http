@@ -61,9 +61,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiO
 
 
 ### add track
-PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/add-track/1234567897
+POST http://localhost/party/5ece94e946b13e078c2b9b4b/add-track
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+
+{
+  "id": "1234567897",
+  "name": "test"
+}
 
 
 ### Vote

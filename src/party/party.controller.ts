@@ -28,6 +28,7 @@ import { MongoExceptionFilter } from '../database/mongoException.filter';
 import { PartyMemberGuard } from './guard/partyMember.guard';
 import { AddTrackGuard } from './guard/addTrack.guard';
 import { TrackPlayerGuard } from './guard/TrackPlayer.guard';
+import { AddTrackDto } from './dto/addTrackDto.dto';
 
 @Controller('party')
 export class PartyController {
@@ -95,11 +96,11 @@ export class PartyController {
   }
 
   @UseGuards(PartyMemberGuard, AddTrackGuard)
-  @Patch(':id/add-track/:trackId')
+  @Patch(':id/add-track')
   @UseFilters(MongoExceptionFilter)
-  async addTrack(@RequestParty() party: Party, @Param('trackId') trackId: string) {
+  async addTrack(@RequestParty() party: Party, @Body() addTrackDto: AddTrackDto) {
     // todo : verifier que le son est uploadé
-    const updatedParty = await this.partyService.addTrack(party, trackId);
+    const updatedParty = await this.partyService.addTrack(party, addTrackDto);
     this.rabbitMqService.send('tracks-updated', {
       currentTrack: updatedParty.currentTrack,
       tracks: updatedParty.tracks
