@@ -66,7 +66,7 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
 
 {
-  "id": "1234567897",
+  "id": "0ThZIgyAnJQ",
   "name": "test"
 }
 

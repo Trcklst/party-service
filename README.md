@@ -30,7 +30,6 @@ Service permettant la gestion de la 'party':
 - tracks-updated {currentTrack, tracks}
 
 ## TODO
-- A l'ajout d'un son : faire une requete vers le service d'upload pour vérifier son existance
 - Ajout mutex pour les requetes faites sur la meme party (ex: vote)
 - Transaction en cas d'erreur revert
 - Gerer les erreurs rabbit mq (si event non recu)

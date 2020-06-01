@@ -7,7 +7,7 @@ export class AddTrackGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    return this.validateRequest(request, request.params['trackId']);
+    return this.validateRequest(request, request.body.id);
   }
 
   validateRequest(request: Request, trackId: string) {

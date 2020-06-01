@@ -1,9 +1,10 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
-  Get,
-  HttpCode,
+  Get, Headers,
+  HttpCode, HttpService,
   Param,
   Patch,
   Post,
@@ -13,9 +14,7 @@ import {
 } from '@nestjs/common';
 import { RabbitMqService } from '../rabbit-mq/rabbit-mq.service';
 import { PartyService } from './party.service';
-
 import { OwnerGuard } from './guard/owner.guard';
-
 import { Party } from './interface/party.interface';
 import { UserDto } from '../user/dto/user.dto';
 import { CreatePartyDto } from './dto/createPartyDto.dto';
@@ -29,12 +28,14 @@ import { PartyMemberGuard } from './guard/partyMember.guard';
 import { AddTrackGuard } from './guard/addTrack.guard';
 import { TrackPlayerGuard } from './guard/TrackPlayer.guard';
 import { AddTrackDto } from './dto/addTrackDto.dto';
+import configuration from '../config/configuration';
 
 @Controller('party')
 export class PartyController {
   constructor(
     private readonly rabbitMqService: RabbitMqService,
-    private readonly partyService: PartyService
+    private readonly partyService: PartyService,
+    private httpService: HttpService
   ) {}
 
   @Post()
@@ -96,10 +97,18 @@ export class PartyController {
   }
 
   @UseGuards(PartyMemberGuard, AddTrackGuard)
-  @Patch(':id/add-track')
+  @Post(':id/add-track')
   @UseFilters(MongoExceptionFilter)
-  async addTrack(@RequestParty() party: Party, @Body() addTrackDto: AddTrackDto) {
-    // todo : verifier que le son est uploadé
+  async addTrack(@RequestParty() party: Party, @Body() addTrackDto: AddTrackDto, @Headers('authorization') token: string) {
+    const trackInfo = await this.httpService
+      .get(configuration.services.trackUploadService + addTrackDto.id, {
+        headers: { 'Authorization': token }
+      }).toPromise()
+
+    if(!trackInfo.data) {
+      throw new BadRequestException('Track not uploaded');
+    }
+
     const updatedParty = await this.partyService.addTrack(party, addTrackDto);
     this.rabbitMqService.send('tracks-updated', {
       currentTrack: updatedParty.currentTrack,

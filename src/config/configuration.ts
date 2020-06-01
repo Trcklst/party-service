@@ -1,6 +1,9 @@
 require('dotenv').config();
 
 export default {
+  services: {
+    trackUploadService: process.env.TRACK_UPLOAD_SERVICE
+  },
   jwtSecret: process.env.JWT_SECRET,
   app: {
     port: process.env.EUREKA_INSTANCE_PORT

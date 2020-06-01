@@ -12,7 +12,9 @@ import { AddTrackDto } from './dto/addTrackDto.dto';
 @Injectable()
 export class PartyService {
 
-  constructor(@Inject(PARTY_MODEL) private partyModel: Model<Party>) {}
+  constructor(
+    @Inject(PARTY_MODEL) private partyModel: Model<Party>
+  ) {}
 
   sortPartyTracks(party: Party): Party {
     party.tracks = party.tracks.sort((trackA, trackB) => trackB.votesCount - trackA.votesCount);
