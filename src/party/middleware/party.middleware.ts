@@ -2,18 +2,15 @@ import {
   Injectable,
   NestMiddleware,
   NotFoundException,
-  UseFilters,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { PartyService } from '../party.service';
-import { MongoExceptionFilter } from '../../database/mongoException.filter';
 import * as mongoose from 'mongoose';
 
 @Injectable()
 export class PartyMiddleware implements NestMiddleware {
   constructor(private readonly partyService: PartyService) {}
 
-  @UseFilters(MongoExceptionFilter)
   async use(req: Request, res: Response, next: Function) {
     const params = req.params;
     const partyId = params["id"];
