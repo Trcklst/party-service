@@ -47,7 +47,6 @@ export class PartyController {
 
   @UseGuards(PartyMemberGuard)
   @Get(':id')
-  @HttpCode(201)
   @UseFilters(MongoExceptionFilter)
   async getParty(@RequestParty() party: Party) {
     return this.partyService.sortPartyTracks(party);
