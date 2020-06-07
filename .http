@@ -15,12 +15,12 @@
 #u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOjF9.Ob3cd3dVuwS3RCKtXTsOB4PuGMjcwZ7pSVL7rUS5qT4
 #u eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
 
-# party birthday 5ece92ff77115907744975b1 (premium owner) 5ece94e946b13e078c2b9b4b
+# party birthday 5ece92ff77115907744975b1 (premium owner) 5ece94e946b13e078c2b9b4b 5edd4d1952cb0100a31f1a3b
 
 ### Create
 POST http://localhost/party
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 {
   "name": "Birthday"
@@ -48,9 +48,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6M
 }
 
 ### Join
-PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/join
+PATCH http://localhost/party/5edd4d1952cb0100a31f1a3b/join
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 
 ### leave
@@ -61,9 +61,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiO
 
 
 ### add track
-POST http://localhost/party/5ece94e946b13e078c2b9b4b/add-track
+POST http://localhost/party/5edd4d1952cb0100a31f1a3b/add-track
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 {
   "id": "0ThZIgyAnJQ",
@@ -77,6 +77,6 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6M30.xMEDQY_YgSMgA_vghbYYx4koZDbkS2yCaIXY7FJoHUI
 
 ### Next-track
-PUT http://localhost/party/5ece94e946b13e078c2b9b4b/next-track
+PUT http://localhost/party/5edd4d1952cb0100a31f1a3b/next-track
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
