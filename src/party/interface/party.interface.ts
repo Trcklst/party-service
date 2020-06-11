@@ -12,6 +12,7 @@ export interface CurrentTrack {
   id: string;
   name: string;
   imageUrl: string;
+  status: CurrentTrackStatusEnum;
 }
 
 export interface Party extends Document {

@@ -29,6 +29,7 @@ import { AddTrackGuard } from './guard/addTrack.guard';
 import { TrackPlayerGuard } from './guard/TrackPlayer.guard';
 import { AddTrackDto } from './dto/addTrackDto.dto';
 import configuration from '../config/configuration';
+import { CurrentTrackGuard } from './guard/currentTrack.guard';
 
 @Controller('party')
 export class PartyController {
@@ -77,7 +78,7 @@ export class PartyController {
   async joinParty(@RequestUser() userDto: UserDto, @RequestParty() party: Party) {
     const partyUpdated = await this.partyService.join(party, userDto.id);
     this.rabbitMqService.send('party-joined', {
-      partyId: partyUpdated._id,
+      partyUpdated: partyUpdated,
       userId: userDto.id
     });
     return partyUpdated;
@@ -89,7 +90,7 @@ export class PartyController {
   async leaveParty(@RequestUser() userDto: UserDto, @RequestParty() party: Party) {
     const partyUpdated = await this.partyService.leave(party, userDto.id);
     this.rabbitMqService.send('party-leaved', {
-      partyId: partyUpdated._id,
+      partyUpdated: partyUpdated,
       userId: userDto.id
     });
     return partyUpdated;
@@ -110,8 +111,7 @@ export class PartyController {
 
     const updatedParty = await this.partyService.addTrack(party, addTrackDto);
     this.rabbitMqService.send('tracks-updated', {
-      currentTrack: updatedParty.currentTrack,
-      tracks: updatedParty.tracks
+      updatedParty: updatedParty
     });
     return updatedParty;
   }
@@ -122,8 +122,7 @@ export class PartyController {
   async voteTrack(@RequestParty() party: Party, @Param('trackId') trackId: string, @RequestUser() userDto : UserDto) {
     const updatedParty = await this.partyService.voteTrack(party, trackId, userDto);
     this.rabbitMqService.send('tracks-updated', {
-      currentTrack: updatedParty.currentTrack,
-      tracks: updatedParty.tracks
+      updatedParty: updatedParty
     });
     return updatedParty;
   }
@@ -134,9 +133,31 @@ export class PartyController {
   async nextTrack(@RequestParty() party: Party) {
     const updatedParty = await this.partyService.nextTrack(party);
     this.rabbitMqService.send('tracks-updated', {
-      currentTrack: updatedParty.currentTrack,
-      tracks: updatedParty.tracks
+      updatedParty: updatedParty
     });
     return updatedParty;
   }
+
+  @UseGuards(OwnerGuard, CurrentTrackGuard)
+  @Patch(':id/play')
+  @HttpCode(204)
+  async play(@RequestParty() party : Party) {
+    const updatedParty = await this.partyService.play(party);
+    this.rabbitMqService.send('track-status-update', {
+      updatedParty: updatedParty
+    });
+    return;
+  }
+
+  @UseGuards(OwnerGuard, CurrentTrackGuard)
+  @Patch(':id/pause')
+  @HttpCode(204)
+  async pause(@RequestParty() party : Party) {
+    const updatedParty = await this.partyService.pause(party);
+    this.rabbitMqService.send('track-status-update', {
+      updatedParty: updatedParty
+    });
+    return;
+  }
+
 }

@@ -27,9 +27,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiO
 }
 
 ### GET
-GET http://localhost/party/5ece94e946b13e078c2b9b4b
+GET http://localhost/party/5ee202b270ef5e004d73602e
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 ### Delete
 DELETE http://localhost/party/5ece900e0418ec07364ca055
@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6M
 }
 
 ### Join
-PATCH http://localhost/party/5edd4d1952cb0100a31f1a3b/join
+PATCH http://localhost/party/5ee202b270ef5e004d73602e/join
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
@@ -61,22 +61,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiO
 
 
 ### add track
-POST http://localhost/party/5edd4d1952cb0100a31f1a3b/add-track
+POST http://localhost/party/5ee202b270ef5e004d73602e/add-track
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 {
-  "id": "0ThZIgyAnJQ",
+  "id": "151s7oadgPk",
   "name": "test"
 }
 
 
 ### Vote
-PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/vote-track/123456
+PATCH http://localhost/party/5ee202b270ef5e004d73602e/vote-track/123456
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6M30.xMEDQY_YgSMgA_vghbYYx4koZDbkS2yCaIXY7FJoHUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 ### Next-track
-PUT http://localhost/party/5edd4d1952cb0100a31f1a3b/next-track
+PUT http://localhost/party/5ee202b270ef5e004d73602e/next-track
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+
+
+### Pause
+PATCH http://localhost/party/5ee202b270ef5e004d73602e/pause
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+
+### Play
+PATCH http://localhost/party/5ee202b270ef5e004d73602e/play
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI

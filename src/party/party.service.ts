@@ -8,6 +8,7 @@ import { EditPartyDto } from './dto/editPartyDto.dto';
 import { UserDto } from '../user/dto/user.dto';
 import { UserRolesEnum } from '../user/enum/userRoles.enum';
 import { AddTrackDto } from './dto/addTrackDto.dto';
+import { CurrentTrackStatusEnum } from './enum/currentTrackStatus.enum';
 
 @Injectable()
 export class PartyService {
@@ -34,12 +35,12 @@ export class PartyService {
 
   async join(party: Party, memberId: number): Promise<Party> {
     party.members.push(memberId);
-    return await party.save();
+    return party.save();
   }
 
   async leave(party: Party, memberId: number): Promise<Party> {
     party.members.splice(party.members.indexOf(memberId),1);
-    return await party.save();
+    return party.save();
   }
 
   async delete(party: Party) {
@@ -70,8 +71,18 @@ export class PartyService {
 
   async nextTrack(party: Party): Promise<Party> {
     const nextTrack = party.tracks.shift();
-    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl, name: nextTrack.name }
+    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl, name: nextTrack.name, status: CurrentTrackStatusEnum.PLAY}
     const updatedParty = await party.save()
     return this.sortPartyTracks(updatedParty);
+  }
+
+  async play(party: Party): Promise<Party> {
+    party.currentTrack.status = CurrentTrackStatusEnum.PLAY;
+    return party.save();
+  }
+
+  async pause(party: Party): Promise<Party> {
+    party.currentTrack.status = CurrentTrackStatusEnum.PAUSE;
+    return party.save();
   }
 }

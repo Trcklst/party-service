@@ -19,15 +19,18 @@ Service permettant la gestion de la 'party':
 - Patch /party/:id/join : joindre une party : 200 obj party
 - Patch /party/:id/leave : quitter une party : 200 obj party
 - Post /party/:id/add-track : ajout d'un track (body: {name, id}) : 200 obj party
-- Patch /party/:id/vote-track/trackId : vote pour un track : 200 obj party
+- Patch /party/:id/vote-track/:trackId : vote pour un track : 200 obj party
 - Put /party/:id/next-track : gestion du track joué : 200 obj party
+- Patch /party/:id/play : play le track courant : 204
+- Patch /party/:id/pause : pause le track courant : 204
 
 ## Events sent
 - party-deleted {partyId}
 - party-edited obj party
-- party-joined {partyId, userId}
-- party-leaved {partyId, userId}
-- tracks-updated {currentTrack, tracks}
+- party-joined {party, userId}
+- party-leaved {party, userId}
+- tracks-updated {party}
+- track-status-update {party}
 
 ## TODO
 - Ajout mutex pour les requetes faites sur la meme party (ex: vote)
@@ -35,4 +38,4 @@ Service permettant la gestion de la 'party':
 - Gerer les erreurs rabbit mq (si event non recu)
 - s'enregistrer sur eureka
 - ameliorer la gestion erreur mongodb (filter exception)
-
+- Proteger next song tant que le currentTrack n'est pas fini

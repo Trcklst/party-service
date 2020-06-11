@@ -8,6 +8,8 @@ export const PartySchema = new mongoose.Schema({
   currentTrack: {
     id: String,
     imageUrl: String,
+    name: String,
+    status: Number
   },
   tracks: [
     {
