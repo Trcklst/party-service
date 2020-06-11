@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { CurrentTrackStatusEnum } from '../enum/currentTrackStatus.enum';
 
 export interface Tracks {
   id: string;
