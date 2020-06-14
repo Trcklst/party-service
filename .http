@@ -20,7 +20,7 @@
 ### Create
 POST http://localhost/party
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 {
   "name": "Birthday"
@@ -32,62 +32,62 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
 
 ### Delete
-DELETE http://localhost/party/5ece900e0418ec07364ca055
+DELETE http://localhost/party/5ee5051ce5dc0a008488c8fe
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Mn0.4HJKocDenmbpNbQ_nooP9iRKZkTfpNrVSB-LoQA7Yig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 ### Edit
-PUT http://localhost/party/5ece94e946b13e078c2b9b4b
+PUT http://localhost/party/5ee54f11138d47002f10b52f
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MX0.NDeGKG8hZGNvBIjmvnmlnGoLPhT7969Yp91NDXrL_R8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 {
-  "name": "test2",
+  "name": "QSDQSD",
   "limited": true
 }
 
 ### Join
-PATCH http://localhost/party/5ee202b270ef5e004d73602e/join
+PATCH http://localhost/party/5ee54f11138d47002f10b52f/join
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 ### leave
-PATCH http://localhost/party/5ece94e946b13e078c2b9b4b/leave
+PATCH http://localhost/party/5ee54f11138d47002f10b52f/leave
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOjF9.28HGMLxA_YC5N-ydNu1B4_5NhlZwopoOlGVQqXHuFW4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 
 ### add track
-POST http://localhost/party/5ee202b270ef5e004d73602e/add-track
+POST http://localhost/party/5ee54f11138d47002f10b52f/add-track
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 {
-  "id": "151s7oadgPk",
-  "name": "test"
+  "id": "w0BPaY6_9hs",
+  "name": "Booba - Cavaliero"
 }
 
 
 ### Vote
-PATCH http://localhost/party/5ee202b270ef5e004d73602e/vote-track/123456
+PATCH http://localhost/party/5ee54f11138d47002f10b52f/vote-track/w0BPaY6_9hs
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 ### Next-track
-PUT http://localhost/party/5ee202b270ef5e004d73602e/next-track
+PUT http://localhost/party/5ee54f11138d47002f10b52f/next-track
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 ### Pause
-PATCH http://localhost/party/5ee202b270ef5e004d73602e/pause
+PATCH http://localhost/party/5ee54f11138d47002f10b52f/pause
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 ### Play
-PATCH http://localhost/party/5ee202b270ef5e004d73602e/play
+PATCH http://localhost/party/5ee54f11138d47002f10b52f/play
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksInJvbGUiOjF9.KRGQbuC_9qs0fdzjnSaNf1UnfKbq-UeZ97dXfSy0dBI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M

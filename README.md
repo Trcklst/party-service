@@ -26,11 +26,9 @@ Service permettant la gestion de la 'party':
 
 ## Events sent
 - party-deleted {partyId}
-- party-edited obj party
 - party-joined {party, userId}
 - party-leaved {party, userId}
-- tracks-updated {party}
-- track-status-update {party}
+- party-updated {party}
 
 ## TODO
 - Ajout mutex pour les requetes faites sur la meme party (ex: vote)
