@@ -48,46 +48,46 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZ
 }
 
 ### Join
-PATCH http://localhost/party/5ee54f11138d47002f10b52f/join
+PATCH http://localhost:8081/party/5ee54f11138d47002f10b52f/join
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 ### leave
-PATCH http://localhost/party/5ee54f11138d47002f10b52f/leave
+PATCH http://localhost:8081/party/5ee54f11138d47002f10b52f/leave
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 
 ### add track
-POST http://localhost/party/5ee54f11138d47002f10b52f/add-track
+POST http://localhost:8081/party/5ee54f11138d47002f10b52f/add-track
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 {
-  "id": "w0BPaY6_9hs",
+  "id": "i-o50WHxjj0",
   "name": "Booba - Cavaliero"
 }
 
 
 ### Vote
-PATCH http://localhost/party/5ee54f11138d47002f10b52f/vote-track/w0BPaY6_9hs
+PATCH http://localhost:8081/party/5ee54f11138d47002f10b52f/vote-track/w0BPaY6_9hs
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 ### Next-track
-PUT http://localhost/party/5ee54f11138d47002f10b52f/next-track
+PUT http://localhost:8081/party/5ee54f11138d47002f10b52f/next-track
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 
 ### Pause
-PATCH http://localhost/party/5ee54f11138d47002f10b52f/pause
+PATCH http://localhost:8081/party/5ee54f11138d47002f10b52f/pause
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
 
 ### Play
-PATCH http://localhost/party/5ee54f11138d47002f10b52f/play
+PATCH http://localhost:8081/party/5ee54f11138d47002f10b52f/play
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
