@@ -1,9 +1,14 @@
-import { IsNumber } from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
+import { SubscriptionEnum } from '../enum/subscription.enum';
+import { RoleEnum } from '../enum/role.enum';
 
 export class UserDto {
   @IsNumber()
-  id: number;
+  userId: number;
 
-  @IsNumber()
-  role: number;
+  @IsArray()
+  authorities: RoleEnum[];
+
+  @IsString()
+  subscription: SubscriptionEnum;
 }

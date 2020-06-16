@@ -3,11 +3,11 @@ import { Model } from 'mongoose';
 import { Party } from './interface/party.interface';
 import { PARTY_MODEL, YOUTUBE_IMAGE, YOUTUBE_IMAGE_URL } from '../constants';
 
-import { CreatePartyDto } from './dto/createPartyDto.dto';
-import { EditPartyDto } from './dto/editPartyDto.dto';
+import { CreatePartyDto } from './dto/createParty.dto';
+import { EditPartyDto } from './dto/editParty.dto';
 import { UserDto } from '../user/dto/user.dto';
-import { UserRolesEnum } from '../user/enum/userRoles.enum';
-import { AddTrackDto } from './dto/addTrackDto.dto';
+import { SubscriptionEnum } from '../user/enum/subscription.enum';
+import { AddTrackDto } from './dto/addTrack.dto';
 import { CurrentTrackStatusEnum } from './enum/currentTrackStatus.enum';
 
 @Injectable()
@@ -27,8 +27,8 @@ export class PartyService {
   }
 
   async create(createPartyDto: CreatePartyDto, user: UserDto): Promise<Party> {
-    const limited = !(user.role == UserRolesEnum.ADMIN || user.role == UserRolesEnum.PREMIUM);
-    const createParty = {ownerId: user.id, limited: limited,...createPartyDto};
+    const limited = !(user.subscription == SubscriptionEnum.PRO || user.subscription == SubscriptionEnum.PREMIUM);
+    const createParty = {ownerId: user.userId, limited: limited,...createPartyDto};
     const createdParty = new this.partyModel(createParty);
     return createdParty.save();
   }
@@ -63,7 +63,7 @@ export class PartyService {
     const updatedParty = await this.partyModel.findOneAndUpdate(
       {"_id": party._id, "tracks.id": trackId},
       {
-        $push: {"tracks.$.votes": userDto.id},
+        $push: {"tracks.$.votes": userDto.userId},
         $inc: {"tracks.$.votesCount": 1}
       }, { new: true });
     return this.sortPartyTracks(updatedParty);

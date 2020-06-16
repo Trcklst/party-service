@@ -14,6 +14,6 @@ export class BouncerGuard implements CanActivate {
   validateRequest(request: Request) {
     const party = request['party'];
     const user = request['user'];
-    return (!party.limited || party.members.length <= PARTY_LIMITATION) && !party.members.includes(user.id);
+    return (!party.limited || party.members.length <= PARTY_LIMITATION) && !party.members.includes(user.userId);
   }
 }

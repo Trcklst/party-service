@@ -17,6 +17,6 @@ export class VoteGuard implements CanActivate {
       throw new NotFoundException('Track not found in this party');
     }
 
-    return !track.votes.includes(request['user'].id);
+    return !track.votes.includes(request['user'].userId);
   }
 }

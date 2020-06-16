@@ -17,8 +17,8 @@ import { PartyService } from './party.service';
 import { OwnerGuard } from './guard/owner.guard';
 import { Party } from './interface/party.interface';
 import { UserDto } from '../user/dto/user.dto';
-import { CreatePartyDto } from './dto/createPartyDto.dto';
-import { EditPartyDto } from './dto/editPartyDto.dto';
+import { CreatePartyDto } from './dto/createParty.dto';
+import { EditPartyDto } from './dto/editParty.dto';
 import { RequestUser } from '../user/decorator/user.decorator';
 import { RequestParty } from './decorator/party.decorator';
 import { BouncerGuard } from './guard/bouncer.guard';
@@ -27,7 +27,7 @@ import { MongoExceptionFilter } from '../database/mongoException.filter';
 import { PartyMemberGuard } from './guard/partyMember.guard';
 import { AddTrackGuard } from './guard/addTrack.guard';
 import { TrackPlayerGuard } from './guard/TrackPlayer.guard';
-import { AddTrackDto } from './dto/addTrackDto.dto';
+import { AddTrackDto } from './dto/addTrack.dto';
 import configuration from '../config/configuration';
 import { CurrentTrackGuard } from './guard/currentTrack.guard';
 
@@ -76,10 +76,10 @@ export class PartyController {
   @Patch(':id/join')
   @UseFilters(MongoExceptionFilter)
   async joinParty(@RequestUser() userDto: UserDto, @RequestParty() party: Party) {
-    const partyUpdated = await this.partyService.join(party, userDto.id);
+    const partyUpdated = await this.partyService.join(party, userDto.userId);
     this.rabbitMqService.send('party-joined', {
       party: partyUpdated,
-      userId: userDto.id
+      userId: userDto.userId
     });
     return partyUpdated;
   }
@@ -88,10 +88,10 @@ export class PartyController {
   @Patch(':id/leave')
   @UseFilters(MongoExceptionFilter)
   async leaveParty(@RequestUser() userDto: UserDto, @RequestParty() party: Party) {
-    const partyUpdated = await this.partyService.leave(party, userDto.id);
+    const partyUpdated = await this.partyService.leave(party, userDto.userId);
     this.rabbitMqService.send('party-leaved', {
       party: partyUpdated,
-      userId: userDto.id
+      userId: userDto.userId
     });
     return partyUpdated;
   }

@@ -13,8 +13,13 @@ export class UserMiddleware implements NestMiddleware {
     }
 
     const token = req.headers['authorization'].replace('Bearer ', '');
+    const tokenPayload = this.jwtService.decode(token);
 
-    req['user'] = this.jwtService.decode(token);
+    if(!tokenPayload['userId']) {
+      throw new UnauthorizedException();
+    }
+
+    req['user'] = tokenPayload;
     next();
   }
 }

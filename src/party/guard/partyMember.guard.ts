@@ -13,7 +13,7 @@ export class PartyMemberGuard implements CanActivate {
   validateRequest(request: Request) {
     const party = request['party'];
     const user = request['user'];
-    return party.members.includes(user.id);
+    return party.members.includes(user.userId);
   }
 }
 
