@@ -23,7 +23,14 @@ export class PartyService {
   }
 
   async findOneById(partyId: string): Promise<Party> {
-      return this.partyModel.findById(partyId);
+    return this.partyModel.findById(partyId);
+  }
+
+  async getParties(user) {
+    return  this.partyModel.find({ $or: [ {'ownerId': user.userId}, {'members': user.userId} ] }, function(error, data) {
+      if(error) return null;
+      return data;
+    })
   }
 
   async create(createPartyDto: CreatePartyDto, user: UserDto): Promise<Party> {

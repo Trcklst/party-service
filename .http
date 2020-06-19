@@ -26,6 +26,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZ
   "name": "Birthday"
 }
 
+### Get Parties
+
+GET http://localhost:8081/party
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Njk2OSwicm9sZSI6MX0.bB7OfYgkR4Nkpzt-Al2B2CXPomKlrk1uyeVTN-2iM6M
+
+
 ### GET
 GET http://localhost/party/5ee202b270ef5e004d73602e
 content-type: application/json

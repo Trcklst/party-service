@@ -46,6 +46,12 @@ export class PartyController {
     return await this.partyService.create(createPartyDto, userDto);
   }
 
+  @Get()
+  @UseFilters(MongoExceptionFilter)
+  async getParties(@RequestUser() userDto : UserDto) {
+    return this.partyService.getParties(userDto);
+  }
+
   @UseGuards(PartyMemberGuard)
   @Get(':id')
   @UseFilters(MongoExceptionFilter)
