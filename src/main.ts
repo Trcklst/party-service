@@ -26,6 +26,7 @@ async function bootstrap() {
       }
     },
     eureka: {
+      preferIpAddress: true,
       host: configuration.eurekaClient.eureka.host,
       port: configuration.eurekaClient.eureka.port,
       servicePath: '/eureka/apps/',
