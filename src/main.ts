@@ -11,7 +11,6 @@ async function bootstrap() {
   const client = new Eureka({
     instance: {
       app: 'party-service',
-      instanceId: `party-service:${configuration.app.port}`,
       hostName: configuration.eurekaClient.instance.hostName,
       port: {
         '$': configuration.app.port,
