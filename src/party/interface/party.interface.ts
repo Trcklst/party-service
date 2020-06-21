@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 import { CurrentTrackStatusEnum } from '../enum/currentTrackStatus.enum';
+import { SubscriptionEnum } from '../../user/enum/subscription.enum';
 
 export interface Track {
   id: string;
@@ -19,6 +20,7 @@ export interface CurrentTrack {
 export interface Member {
   id: number;
   email: string;
+  subscription: SubscriptionEnum;
 }
 
 export interface Party extends Document {

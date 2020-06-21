@@ -21,11 +21,11 @@ export class BouncerGuard implements CanActivate {
       throw new UnauthorizedException('Already in the party');
     }
 
-    if(user.subscription == null && party.members.length >= PARTY_MEMBERS_LIMITATION_DEFAULT) {
+    if(party.owner.subscription == null && party.members.length >= PARTY_MEMBERS_LIMITATION_DEFAULT) {
       throw new UnauthorizedException('The playlist creator\'s account is limited to 10 participants');
     }
 
-    if(user.subscription == SubscriptionEnum.PREMIUM && party.members.length >= PARTY_MEMBERS_LIMITATION_PREMIUM) {
+    if(party.owner.subscription == SubscriptionEnum.PREMIUM && party.members.length >= PARTY_MEMBERS_LIMITATION_PREMIUM) {
       throw new UnauthorizedException('The playlist creator\'s account is limited to 25 participants');
     }
 

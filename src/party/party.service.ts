@@ -38,13 +38,13 @@ export class PartyService {
   }
 
   async create(createPartyDto: CreatePartyDto, user: UserDto): Promise<Party> {
-    const createParty = {owner: {id: user.userId, email: user.email}, name: createPartyDto.name, createdAt: new Date()};
+    const createParty = {owner: {id: user.userId, email: user.email, subscription: user.subscription}, name: createPartyDto.name, createdAt: new Date()};
     const createdParty = new this.partyModel(createParty);
     return createdParty.save();
   }
 
   async join(party: Party, userDto: UserDto): Promise<Party> {
-    party.members.push({ id: userDto.userId, email: userDto.email });
+    party.members.push({ id: userDto.userId, email: userDto.email, subscription: userDto.subscription });
     return party.save();
   }
 

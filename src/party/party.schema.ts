@@ -1,9 +1,11 @@
 import * as mongoose from 'mongoose';
+import { SubscriptionEnum } from '../user/enum/subscription.enum';
 
 const Member = new mongoose.Schema(
 {
     id: Number,
-    email: String
+    email: String,
+    subscription: SubscriptionEnum
   }
 ,{ _id : false });
 
