@@ -11,6 +11,6 @@ export class OwnerGuard implements CanActivate {
   }
 
   validateRequest(request: Request){
-    return request['user'].userId == request['party'].ownerId;
+    return request['user'].userId == request['party'].owner.id;
   }
 }

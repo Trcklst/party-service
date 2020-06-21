@@ -1,9 +1,26 @@
 import * as mongoose from 'mongoose';
 
+const Member = new mongoose.Schema(
+{
+    id: Number,
+    email: String
+  }
+,{ _id : false });
+
+const Track = new mongoose.Schema({
+  id: String,
+  name: String,
+  imageUrl: String,
+  votesCount: Number,
+  votes: Array
+}, { _id : false });
+
+
 export const PartySchema = new mongoose.Schema({
   name: String,
-  ownerId: Number,
-  members: Array,
+  owner: Member,
+  createdAt: Date,
+  members: [Member],
   limited: Boolean,
   currentTrack: {
     id: String,
@@ -11,13 +28,5 @@ export const PartySchema = new mongoose.Schema({
     name: String,
     status: Number
   },
-  tracks: [
-    {
-      id: String,
-      name: String,
-      imageUrl: String,
-      votesCount: Number,
-      votes: Array
-    }
-  ]
+  tracks: [Track]
 });

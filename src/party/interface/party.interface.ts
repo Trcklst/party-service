@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 import { CurrentTrackStatusEnum } from '../enum/currentTrackStatus.enum';
 
-export interface Tracks {
+export interface Track {
   id: string;
   name: string;
   imageUrl: string;
@@ -16,11 +16,17 @@ export interface CurrentTrack {
   status: CurrentTrackStatusEnum;
 }
 
+export interface Member {
+  id: number;
+  email: string;
+}
+
 export interface Party extends Document {
   name: string;
-  ownerId: number;
+  owner: Member;
   limited: boolean;
   currentTrack: CurrentTrack;
-  members: Array<number>;
-  tracks: Array<Tracks>;
+  members: Array<Member>;
+  tracks: Array<Track>;
+  createAt: Date;
 }

@@ -2,7 +2,7 @@ import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class VoteGuard implements CanActivate {
+export class UnvoteGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
@@ -13,8 +13,8 @@ export class VoteGuard implements CanActivate {
   validateRequest(request: Request, trackId){
     const track = request['party'].tracks.find(track => track.id == trackId);
 
-    if(track.votes.includes(request['user'].userId)) {
-      throw new UnauthorizedException('You already vote for this track');
+    if(!track.votes.includes(request['user'].userId)) {
+      throw new UnauthorizedException('You didn\'t vote for that track');
     }
 
     return true;

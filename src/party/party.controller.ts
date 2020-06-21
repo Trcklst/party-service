@@ -1,10 +1,9 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
-  Get, Headers,
-  HttpCode, HttpService,
+  Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -28,17 +27,19 @@ import { PartyMemberGuard } from './guard/partyMember.guard';
 import { AddTrackGuard } from './guard/addTrack.guard';
 import { TrackPlayerGuard } from './guard/TrackPlayer.guard';
 import { AddTrackDto } from './dto/addTrack.dto';
-import configuration from '../config/configuration';
 import { CurrentTrackGuard } from './guard/currentTrack.guard';
+import { CreatePartyGuard } from './guard/createParty.guard';
+import { TrackExistenceGuard } from './guard/trackExistence.guard';
+import { UnvoteGuard } from './guard/unvote.guard';
 
 @Controller('party')
 export class PartyController {
   constructor(
     private readonly rabbitMqService: RabbitMqService,
     private readonly partyService: PartyService,
-    private httpService: HttpService
   ) {}
 
+  @UseGuards(CreatePartyGuard)
   @Post()
   @HttpCode(201)
   @UseFilters(MongoExceptionFilter)
@@ -49,7 +50,7 @@ export class PartyController {
   @Get()
   @UseFilters(MongoExceptionFilter)
   async getParties(@RequestUser() userDto : UserDto) {
-    return this.partyService.getParties(userDto);
+    return await this.partyService.getParties(userDto);
   }
 
   @UseGuards(PartyMemberGuard)
@@ -82,7 +83,7 @@ export class PartyController {
   @Patch(':id/join')
   @UseFilters(MongoExceptionFilter)
   async joinParty(@RequestUser() userDto: UserDto, @RequestParty() party: Party) {
-    const partyUpdated = await this.partyService.join(party, userDto.userId);
+    const partyUpdated = await this.partyService.join(party, userDto);
     this.rabbitMqService.send('party-joined', {
       party: partyUpdated,
       userId: userDto.userId
@@ -105,28 +106,36 @@ export class PartyController {
   @UseGuards(PartyMemberGuard, AddTrackGuard)
   @Post(':id/add-track')
   @UseFilters(MongoExceptionFilter)
-  async addTrack(@RequestParty() party: Party, @Body() addTrackDto: AddTrackDto, @Headers('authorization') token: string) {
-    const trackInfo = await this.httpService
-      .get(configuration.services.trackUploadService + addTrackDto.id, {
-        headers: { 'Authorization': token }
-      }).toPromise()
-
-    if(!trackInfo.data) {
-      throw new BadRequestException('Track not uploaded');
-    }
-
+  async addTrack(@RequestParty() party: Party, @Body() addTrackDto: AddTrackDto) {
     const updatedParty = await this.partyService.addTrack(party, addTrackDto);
     this.rabbitMqService.send('party-updated', updatedParty);
     return updatedParty;
   }
 
-  @UseGuards(PartyMemberGuard, VoteGuard)
+  @UseGuards(PartyMemberGuard, TrackExistenceGuard, VoteGuard)
   @Patch(':id/vote-track/:trackId')
   @UseFilters(MongoExceptionFilter)
   async voteTrack(@RequestParty() party: Party, @Param('trackId') trackId: string, @RequestUser() userDto : UserDto) {
     const updatedParty = await this.partyService.voteTrack(party, trackId, userDto);
     this.rabbitMqService.send('party-updated', updatedParty);
     return updatedParty;
+  }
+
+  @UseGuards(PartyMemberGuard, TrackExistenceGuard, UnvoteGuard)
+  @Patch(':id/unvote-track/:trackId')
+  @UseFilters(MongoExceptionFilter)
+  async unvoteTrack(@RequestParty() party: Party, @Param('trackId') trackId: string, @RequestUser() userDto : UserDto) {
+    const updatedParty = await this.partyService.unvoteTrack(party, trackId, userDto);
+    this.rabbitMqService.send('party-updated', updatedParty);
+    return updatedParty;
+  }
+
+
+  @UseGuards(PartyMemberGuard)
+  @Get(':id/search/:input')
+  @UseFilters(MongoExceptionFilter)
+  search(@RequestParty() party: Party, @Param('input') input: string) {
+    return this.partyService.search(party, input);
   }
 
   @UseGuards(OwnerGuard, TrackPlayerGuard)

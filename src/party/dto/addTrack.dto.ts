@@ -8,4 +8,8 @@ export class AddTrackDto {
   @IsDefined()
   @IsString()
   name: string;
+
+  @IsDefined()
+  @IsString()
+  imageUrl: string;
 }
