@@ -86,7 +86,7 @@ export class PartyController {
     const partyUpdated = await this.partyService.join(party, userDto);
     this.rabbitMqService.send('party-joined', {
       party: partyUpdated,
-      userId: userDto.userId
+      user: userDto
     });
     return partyUpdated;
   }
@@ -98,7 +98,7 @@ export class PartyController {
     const partyUpdated = await this.partyService.leave(party, userDto.userId);
     this.rabbitMqService.send('party-leaved', {
       party: partyUpdated,
-      userId: userDto.userId
+      user: userDto
     });
     return partyUpdated;
   }
