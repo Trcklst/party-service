@@ -14,7 +14,7 @@ export class CurrentTrackGuard implements CanActivate {
     const currentTrack = request['party'].currentTrack;
 
     if(!currentTrack) {
-      throw new BadRequestException('No current track');
+      throw new BadRequestException('Pas de piste en cours');
     }
 
     return true;

@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -11,6 +11,9 @@ export class OwnerGuard implements CanActivate {
   }
 
   validateRequest(request: Request){
-    return request['user'].userId == request['party'].owner.id;
+    if(request['user'].userId != request['party'].owner.id) {
+      throw new ForbiddenException('Vous n\'êtes pas le propriétaire de la fête');
+    }
+    return true;
   }
 }

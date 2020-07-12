@@ -18,15 +18,15 @@ export class BouncerGuard implements CanActivate {
     const isMember = (member) => member.id == user.userId;
 
     if(party.members.some(isMember)) {
-      throw new UnauthorizedException('Already in the party');
+      throw new UnauthorizedException('Vous êtes déjà présent dans la fête');
     }
 
     if(party.owner.subscription == null && party.members.length >= PARTY_MEMBERS_LIMITATION_DEFAULT) {
-      throw new UnauthorizedException('The playlist creator\'s account is limited to 10 participants');
+      throw new UnauthorizedException('Le compte du créateur de la playlist est limité à 10 participants');
     }
 
     if(party.owner.subscription == SubscriptionEnum.PREMIUM && party.members.length >= PARTY_MEMBERS_LIMITATION_PREMIUM) {
-      throw new UnauthorizedException('The playlist creator\'s account is limited to 25 participants');
+      throw new UnauthorizedException('Le compte du créateur de la playlist est limité à 25 participants');
     }
 
     return true;

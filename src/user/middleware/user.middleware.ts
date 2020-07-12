@@ -9,14 +9,14 @@ export class UserMiddleware implements NestMiddleware {
     const authorization = req.headers['authorization'];
 
     if(!authorization) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Vous n\'êtes pas autorisé');
     }
 
     const token = req.headers['authorization'].replace('Bearer ', '');
     const tokenPayload = this.jwtService.decode(token);
 
     if(!tokenPayload['userId']) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Vous n\'êtes pas autorisé');
     }
 
     req['user'] = tokenPayload;

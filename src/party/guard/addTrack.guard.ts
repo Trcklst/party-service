@@ -14,7 +14,7 @@ export class AddTrackGuard implements CanActivate {
     const track = request['party'].tracks.find(track => track.id == trackId);
 
     if(track) {
-      throw new BadRequestException('Track already added');
+      throw new BadRequestException('Piste déjà ajoutée');
     }
 
     return true;

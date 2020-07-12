@@ -14,7 +14,7 @@ export class UnvoteGuard implements CanActivate {
     const track = request['party'].tracks.find(track => track.id == trackId);
 
     if(!track.votes.includes(request['user'].userId)) {
-      throw new UnauthorizedException('You didn\'t vote for that track');
+      throw new UnauthorizedException('Vous n\'avez pas voté pour cette piste');
     }
 
     return true;

@@ -22,7 +22,7 @@ export class CreatePartyGuard implements CanActivate {
     const parties = await this.partyService.findPartyOfTheDay(user);
 
     if(user.subscription == null && parties.length >= PARTY_CREATION_LIMITATION) {
-      throw new UnauthorizedException('Your account is limited to the creation of one playlist per day');
+      throw new UnauthorizedException('Votre compte est limité à la création d\'une playlist par jour');
     }
 
     return true;

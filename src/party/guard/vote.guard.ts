@@ -14,7 +14,7 @@ export class VoteGuard implements CanActivate {
     const track = request['party'].tracks.find(track => track.id == trackId);
 
     if(track.votes.includes(request['user'].userId)) {
-      throw new UnauthorizedException('You already vote for this track');
+      throw new UnauthorizedException('Vous avez déjà voté pour cette piste');
     }
 
     return true;

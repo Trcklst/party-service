@@ -24,7 +24,7 @@ export class PartyService {
   async findPartyOfTheDay(userDto: UserDto): Promise<Party[]> {
     const beginOfDay = moment().startOf('day');
     return this.partyModel.find({ createdAt: { $gte: beginOfDay.toDate(), $lte: moment(beginOfDay).endOf('day').toDate() }, 'owner.id': userDto.userId }, function(error, result) {
-      if(error) throw new InternalServerErrorException('An error has occurred, please try again later');
+      if(error) throw new InternalServerErrorException('Une erreur s\'est produite, veuillez réessayer plus tard');
       return result;
     });
   }

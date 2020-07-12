@@ -14,7 +14,7 @@ export class TrackPlayerGuard implements CanActivate {
     const countTracks = request['party'].tracks.length;
 
     if(countTracks <= 0) {
-      throw new BadRequestException('No tracks in this party');
+      throw new BadRequestException('Aucune piste dans cette fête');
     }
 
     return true;

@@ -13,7 +13,7 @@ export class TrackExistenceGuard implements CanActivate {
   validateRequest(request: Request, trackId: string) {
     const track = request['party'].tracks.find(track => track.id == trackId);
     if(!track) {
-      throw new NotFoundException('Track not found in this party');
+      throw new NotFoundException('Piste non trouvée dans cette fête');
     }
 
     return true;

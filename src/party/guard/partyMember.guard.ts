@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -14,7 +14,10 @@ export class PartyMemberGuard implements CanActivate {
     const party = request['party'];
     const user = request['user'];
     const isMember = (member) => member.id == user.userId;
-    return party.members.some(isMember);
+    if(!party.members.some(isMember)) {
+      throw new ForbiddenException('Vous n\'êtes pas un membre de la fête');
+    }
+    return true;
   }
 }
 

@@ -16,12 +16,12 @@ export class PartyMiddleware implements NestMiddleware {
     const partyId = params["id"];
 
     if(!mongoose.Types.ObjectId.isValid(partyId)) {
-      throw new NotFoundException('Party not found');
+      throw new NotFoundException('Fête non trouvée');
     }
 
     const party = await this.partyService.findOneById(partyId);
     if(!party) {
-      throw new NotFoundException('Party not found');
+      throw new NotFoundException('Fête non trouvée');
     }
 
     req["party"] = party;
