@@ -90,10 +90,10 @@ export class PartyService {
   }
 
   async nextTrack(party: Party): Promise<Party> {
-    const nextTrack = party.tracks.shift();
-    party.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl, name: nextTrack.name, status: CurrentTrackStatusEnum.PLAY}
-    const updatedParty = await party.save()
-    return this.sortPartyTracks(updatedParty);
+    const orderedParty = this.sortPartyTracks(party);
+    const nextTrack = orderedParty.tracks.shift();
+    orderedParty.currentTrack = {id: nextTrack.id, imageUrl: nextTrack.imageUrl, name: nextTrack.name, status: CurrentTrackStatusEnum.PLAY};
+    return await orderedParty.save();
   }
 
   search(party: Party, input: string) {
